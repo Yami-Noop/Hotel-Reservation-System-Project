@@ -1,0 +1,11 @@
+1,Spa,300
+2,Laundry,100
+3,Breakfast,50
+4,Airport Pickup,200
+5,Gym Access,0
+6,Room Cleaning,0
+7,Swimming Pool,0
+8,Dinner,120
+9,Mini Bar,180
+10,Massage,250
+11,Private plane,5001,asd,ma,123.0
