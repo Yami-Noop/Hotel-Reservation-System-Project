@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Application Viewer</title>
+    <script src="https://cjrtnc.leaningtech.com/2.3/loader.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #e2e8f0;
+        }
+
+        .container {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .title {
+            color: #f1f5f9;
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .warning-banner {
+            background: linear-gradient(45deg, #dc2626, #ea580c);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4); }
+        }
+
+        .credentials-box {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .credentials-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .credential-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .app-container {
+            border: 3px solid #374151;
+            border-radius: 12px;
+            padding: 15px;
+            background: #111827;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .loading-message {
+            color: #9ca3af;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Java Application Viewer</h1>
+        </div>
+
+        <div class="warning-banner">
+            <span class="icon">⚠️</span> THIS MODEL IS FOR TESTING ONLY <span class="icon">⚠️</span>
+        </div>
+
+        <div class="credentials-box">
+            <div class="credentials-title">
+                <span class="icon">🔐</span> Admin Access Credentials
+            </div>
+            <div class="credential-item">
+                <strong>Username:</strong> admin
+            </div>
+            <div class="credential-item">
+                <strong>Password:</strong> admin
+            </div>
+        </div>
+
+        <div class="app-container">
+            <div class="loading-message">
+                Loading Java application...
+            </div>
+            <div id="cheerpj-display"></div>
+        </div>
+
+        <div class="footer">
+            Powered by CheerpJ - Java in the Browser
+        </div>
+    </div>
+
+    <script>
+        cheerpjInit().then(() => {
+            const displayElement = document.getElementById('cheerpj-display');
+            cheerpjCreateDisplay(800, 600, displayElement);
+            cheerpjRunJar("Jav_Pro.jar");
+        }).catch(error => {
+            console.error('Error initializing CheerpJ:', error);
+            document.querySelector('.loading-message').innerHTML = 
+                '<span style="color: #ef4444;">❌ Failed to load Java application</span>';
+        });
+    </script>
+</body>
+</html>
